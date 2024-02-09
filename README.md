@@ -5,7 +5,7 @@ Ce tutoriel est en lien avec le chapitre sur les API Node
 Le tutoriel couvre la création de modèles avec Prisma, l'implémentation de contrôleurs pour la logique métier, l'utilisation de middleware pour la gestion des requêtes, et la configuration des routes pour exposer votre API.
 
 ## Prérequis
-Avant de commencer, assurez-vous d'avoir installé Node.js sur votre machine. Node.js est requis pour exécuter le serveur, le gestionnaire de paquets, et les scripts de développement. Vous pouvez télécharger et installer Node.js depuis le site officiel.
+Avant de commencer, assurez-vous d'avoir installé Node.js sur votre machine. Node.js est requis pour exécuter le serveur, le gestionnaire de paquets, et les scripts de développement. Vous pouvez télécharger et installer Node.js depuis [le site officiel](https://nodejs.org/).
 
 ## Installation
 
