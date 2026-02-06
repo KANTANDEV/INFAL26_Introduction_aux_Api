@@ -136,8 +136,10 @@ mini-api-users/
 ├── .gitignore
 ├── index.js                  # Point d'entrée : création du serveur Express, montage des routes
 ├── routes/
+│   ├── test.js               # Route de test (exemple fourni : même structure que users)
 │   └── users.js              # Déclaration des 6 endpoints → délègue au contrôleur
 ├── controllers/
+│   ├── test.js               # Contrôleur test (exemple fourni : même structure que users)
 │   └── users.js              # Logique métier : lecture du store, validation, réponses HTTP
 ├── data/
 │   └── store.js              # Stockage en mémoire (tableau d'utilisateurs) + fonctions d'accès
@@ -147,7 +149,8 @@ mini-api-users/
 
 **Rôle des fichiers :**
 
-- **`index.js`** : crée l’application Express, monte le routeur des utilisateurs, lance l’écoute sur un port (ex. 3000). Pas de logique CRUD ici.
+- **`index.js`** : crée l’application Express, monte les routeurs (test, users), lance l’écoute sur un port (ex. 3000). Pas de logique CRUD ici.
+- **`routes/test.js`** et **`controllers/test.js`** : route **GET /test** fournie en exemple — **même structure** que pour users (route → contrôleur). À consulter pour comprendre le pattern avant de coder les routes utilisateurs.
 - **`routes/users.js`** : enregistrement des 6 endpoints (GET, POST, PATCH, PUT, DELETE). **Uniquement le mapping URL → contrôleur** : chaque route appelle une fonction du contrôleur (ex. `router.get('/', controller.getAll)`). Aucune logique métier dans ce fichier.
 - **`controllers/users.js`** : **toute la logique des endpoints** (accès au store, validation des données, choix du code HTTP, `res.status(...).json(...)`). Une fonction par action : `getAll`, `getById`, `create`, `updatePartial`, `updateFull`, `remove`.
 - **`data/store.js`** : structure pour stocker les utilisateurs en mémoire (tableau), génération d’un `id` unique, et fonctions utilitaires (trouver par id, ajouter, modifier, supprimer) que vous devez concevoir et implémenter.
@@ -161,6 +164,8 @@ Cette structure évite de tout mettre dans les routes : les routes restent lisib
 
 ### Mise en place et démarrage du serveur
 
+**⚠️ Important :** vous devez **installer les dépendances** avec `pnpm install` **avant** de lancer le serveur (`pnpm dev` ou `pnpm start`). Sans cela, le serveur ne démarrera pas (modules manquants).
+
 1. **Node.js** : utilisez la version indiquée par le projet (fichier `.nvmrc` à la racine) avec **nvm** :
 
    ```bash
@@ -169,7 +174,7 @@ Cette structure évite de tout mettre dans les routes : les routes restent lisib
 
    _(Si vous n'avez pas nvm ou pnpm, consultez les liens du tableau « Ressources et documentation utiles » pour les installer.)_
 
-2. **Dépendances** : installez les paquets avec **pnpm** :
+2. **Dépendances (obligatoire)** : installez les paquets avec **pnpm** avant toute chose :
 
    ```bash
    pnpm install
@@ -186,6 +191,20 @@ Cette structure évite de tout mettre dans les routes : les routes restent lisib
      ```
 
 Le serveur écoute sur un port (ex. `http://localhost:3000`). Avec `pnpm dev`, modifiez un fichier (routes, contrôleur, etc.) et sauvegardez : le serveur redémarre tout seul.
+
+### Vérifier que l'API répond (avant de coder)
+
+Une route de **test** est déjà en place pour vérifier que le serveur fonctionne avant de coder les endpoints `/users` :
+
+- **GET** `http://localhost:3000/test`
+
+Exemple avec curl :
+
+```bash
+curl http://localhost:3000/test
+```
+
+Réponse attendue (200) : `{"ok":true,"message":"API Mini Users — serveur opérationnel"}`. Si vous obtenez cette réponse, l'API est bien lancée ; vous pouvez ensuite implémenter les routes utilisateurs.
 
 ### Tester avec curl (exemples à adapter)
 
