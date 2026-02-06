@@ -1,0 +1,23 @@
+{
+  "name": "mini-api-users",
+  "version": "1.0.0",
+  "description": "Exercice pédagogique — Mini API REST de gestion d'utilisateurs (stockage en mémoire)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "api",
+    "rest",
+    "express",
+    "pedagogie"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  }
+}
